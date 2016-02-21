@@ -7,7 +7,7 @@
 
 Name: %{?scl_prefix}%{pkg_name}
 Version: 1.0.1
-Release: 0.7%{namedreltag}.11%{?dist}
+Release: 0.7%{namedreltag}.12%{?dist}
 Summary: Expression Language 2.2 API
 License: CDDL or GPLv2 with exceptions
 URL: http://www.jboss.org
@@ -17,14 +17,14 @@ URL: http://www.jboss.org
 # git archive --format=tar --prefix=jboss-el-2.2-api-1.0.1/ 2fabd8013214d50b03a65853673c111bdf39e87f | xz > jboss-el-2.2-api-1.0.1.20120212git2fabd8.tar.xz
 Source0: %{pkg_name}-%{namedversion}.tar.xz
 
-BuildRequires: maven30-jboss-specs-parent
+BuildRequires: %{?scl_prefix}jboss-specs-parent
 BuildRequires: %{?scl_prefix_java_common}javapackages-tools
 BuildRequires: %{?scl_prefix_java_common}maven-local
-BuildRequires: maven30-maven-compiler-plugin
-BuildRequires: maven30-maven-enforcer-plugin
-BuildRequires: maven30-maven-install-plugin
-BuildRequires: maven30-maven-jar-plugin
-BuildRequires: maven30-maven-javadoc-plugin
+BuildRequires: %{?scl_prefix}maven-compiler-plugin
+BuildRequires: %{?scl_prefix}maven-enforcer-plugin
+BuildRequires: %{?scl_prefix}maven-install-plugin
+BuildRequires: %{?scl_prefix}maven-jar-plugin
+BuildRequires: %{?scl_prefix}maven-javadoc-plugin
 
 
 BuildArch: noarch
@@ -47,14 +47,14 @@ This package contains the API documentation for %{pkg_name}.
 
 
 %build
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 mvn-rpmbuild install javadoc:aggregate
 %{?scl:EOF}
 
 
 %install
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 
 # Jar files:
@@ -86,6 +86,9 @@ cp -rp target/site/apidocs/* %{buildroot}%{_javadocdir}/%{name}
 
 
 %changelog
+* Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 1.0.1-0.7.20120212git2fabd8.12
+- maven33 rebuild #2
+
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 1.0.1-0.7.20120212git2fabd8.11
 - maven33 rebuild
 
