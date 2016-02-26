@@ -7,7 +7,7 @@
 
 Name: %{?scl_prefix}%{pkg_name}
 Version: 1.0.1
-Release: 0.7%{namedreltag}.12%{?dist}
+Release: 0.7%{namedreltag}.13%{?dist}
 Summary: Expression Language 2.2 API
 License: CDDL or GPLv2 with exceptions
 URL: http://www.jboss.org
@@ -19,7 +19,7 @@ Source0: %{pkg_name}-%{namedversion}.tar.xz
 
 BuildRequires: %{?scl_prefix}jboss-specs-parent
 BuildRequires: %{?scl_prefix_java_common}javapackages-tools
-BuildRequires: %{?scl_prefix_java_common}maven-local
+BuildRequires: %{?scl_prefix}maven-local
 BuildRequires: %{?scl_prefix}maven-compiler-plugin
 BuildRequires: %{?scl_prefix}maven-enforcer-plugin
 BuildRequires: %{?scl_prefix}maven-install-plugin
@@ -86,6 +86,9 @@ cp -rp target/site/apidocs/* %{buildroot}%{_javadocdir}/%{name}
 
 
 %changelog
+* Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 1.0.1-0.7.20120212git2fabd8.13
+- Fix BR on maven-local & co.
+
 * Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 1.0.1-0.7.20120212git2fabd8.12
 - maven33 rebuild #2
 
